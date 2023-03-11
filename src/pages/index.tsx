@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import axios from "axios";
+import { PORT } from "@/globals";
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ videos }) => {
+    console.log(videos)
   return (
       <h1 className="text-3xl font-bold underline">
           Home page
@@ -9,15 +11,17 @@ const Home: NextPage = () => {
   )
 }
 
-export const getServerSideProps = async () => {
-    const response = await axios.get('http://localhost:3000/api/post')
-    console.log(response.data)
+export async function getServerSideProps() {
+
+    const { data } = await axios.get(`${PORT}/api/post`)
+
+    
 
     return {
         props: {
-
+            videos: data,
         }
     }
-}
+} 
 
 export default Home
