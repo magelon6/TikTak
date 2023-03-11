@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from "next/image";
 import Link from "next/link"
-import { useRouter } from "next/router";
-import { GoogleLogin, googleLogout  } from '@react-oauth/google';
-import { AiOutlineLogout } from "react-icons/ai";
-import { BiSearch } from "react-icons/bi";
-import { ioMdAdd } from "react-icons/io"
+// import { useRouter } from "next/router";
+// import { GoogleLogin, googleLogout  } from '@react-oauth/google';
+// import { AiOutlineLogout } from "react-icons/ai";
+// import { BiSearch } from "react-icons/bi";
+// import { ioMdAdd } from "react-icons/io"
 import Logo from "../utils/tiktik-logo.png"
 
 const Navbar = () => {

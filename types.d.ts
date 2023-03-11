@@ -4,25 +4,27 @@ export interface Video {
     asset: {
       url: string;
       _id: string;
-    }
+    };
   };
   _id: string;
-  comments: {
-    comment: string;
-      postedBy: {
-      image: string;
-      userName: string;
-      _id: string;
-    }
-    }[];
-    likes: {
-      
-    }[];
+  postedBy: {
+    image: string;
+    userName: string;
+    _id: string;
+  };
+  likes: {
     postedBy: {
       image: string;
       userName: string;
       _id: string;
-    }[];
-    userId: string;
-
+    };
+  }[];
+  comments: {
+    comment: string;
+    _key: string;
+      postedBy: {
+      _ref: string;
+    }
+  }[];
+  userId: string;
 }
