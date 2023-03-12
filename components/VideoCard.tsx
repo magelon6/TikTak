@@ -10,7 +10,7 @@ interface IProps {
 
 const VideoCard: NextPage<IProps> = ({ post }) => {
   return (
-    <div>
+    <div className='flex-col'>
       <div>
         <div className="flex align-middle items-center">
           <div className="w-12 m-2">
@@ -30,6 +30,17 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
               <p>{post.postedBy.userName} </p>
             </Link>
           </div>
+        </div>
+      </div>
+
+      <div className="flex relative">
+        <div className="absolute inset-0">
+          <Link href="/">
+            <video className=" object-cover bg-gray-600" loop muted>
+              <source src={post.video.asset.url} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </Link>
         </div>
       </div>
     </div>

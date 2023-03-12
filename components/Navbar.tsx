@@ -6,7 +6,7 @@ import Link from "next/link"
 // import { AiOutlineLogout } from "react-icons/ai";
 // import { BiSearch } from "react-icons/bi";
 // import { ioMdAdd } from "react-icons/io"
-import Logo from "../utils/tiktik-logo.png"
+import Logo from "../utils/tiktak.png"
 
 const Navbar = () => {
     return (
