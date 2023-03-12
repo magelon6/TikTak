@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Video } from 'types'
 
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
@@ -16,8 +16,21 @@ interface IProps {
 const VideoCard: NextPage<IProps> = ({ post }) => {
 
   const [isHover, setIsHover] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const handleVideo = () => {
+    if(playing){
+      videoRef?.current?.pause()
+      setPlaying(false)
+    } else {
+      videoRef?.current?.play()
+      setPlaying(true)
+    }
+    
+  }
 
   return (
     <div className='flex flex-col border-b-2 border-gray-200 pb-6'>
@@ -26,8 +39,8 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           <div className='md:w-16 md:h-16 w-10 h-10'>
             <Link href='/'>
               <Image
-                width={62}
-                height={62}
+                width={22}
+                height={22}
                 className="rounded-full"
                 src={post.postedBy.image}
                 alt="profile photo"
@@ -56,22 +69,24 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           onMouseLeave={() => setIsHover(false)}
           className="rounded-3xl">
           <Link href="/">
-            <video 
-              className='lg:w-[500px] h-[200px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-gray-100' 
-              poster={post.video.asset.url} 
+            <video
+              onClick={handleVideo}
+              className='lg:w-[400px] h-[150px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-gray-100' 
+              // poster={post.video.asset.url}
+              src={post.video.asset.url}
               loop
+              ref={videoRef}
             >
-              Your browser does not support the video tag.
             </video>
           </Link>
           { isHover && (
             <div>
-              {isPlaying ? (
-                <button>
+              {playing ? (
+                <button onClick={handleVideo}>
                   <BsFillPauseFill className="text-black text-2xl lg:text-4xl"/>
                 </button>
               ) : (
-                <button>
+                <button onClick={handleVideo}>
                   <BsFillPlayFill className="text-black text-2xl lg:text-4xl"/>
                 </button>
               )}
