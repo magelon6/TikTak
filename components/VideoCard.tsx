@@ -71,7 +71,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           <Link href="/">
             <video
               onClick={handleVideo}
-              className='lg:w-[400px] h-[150px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-gray-100' 
+              className='lg:w-[400px] h-[150px] md:h-[400px] lg:h-[400px] w-[200px] rounded-2xl cursor-pointer bg-gray-100' 
               // poster={post.video.asset.url}
               src={post.video.asset.url}
               loop
@@ -80,23 +80,23 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
             </video>
           </Link>
           { isHover && (
-            <div>
+            <div className="absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-center w-[100px] md:w-[50px] lg:w-[400px] p-3">
               {playing ? (
                 <button onClick={handleVideo}>
-                  <BsFillPauseFill className="text-black text-2xl lg:text-4xl"/>
+                  <BsFillPauseFill className="text-[#f9804b] text-2xl lg:text-4xl"/>
                 </button>
               ) : (
                 <button onClick={handleVideo}>
-                  <BsFillPlayFill className="text-black text-2xl lg:text-4xl"/>
+                  <BsFillPlayFill className="text-[#f9804b] text-2xl lg:text-4xl"/>
                 </button>
               )}
               {isMuted ? (
                 <button>
-                  <HiVolumeOff className="text-black text-2xl lg:text-4xl"/>
+                  <HiVolumeOff className="text-[#f9804b] text-2xl lg:text-4xl"/>
                 </button>
               ) : (
                 <button>
-                  <HiVolumeUp className="text-black text-2xl lg:text-4xl"/>
+                  <HiVolumeUp className="text-[#f9804b] text-2xl lg:text-4xl"/>
                 </button>
               )}
             </div>
