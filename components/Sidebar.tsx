@@ -19,7 +19,7 @@ const Sidebar = () => {
 
     const normalLink = `flex items-center gap-3 hover:bg-primary p-3 
                         justify-center xl:justify-start cursor-pointer 
-                        font-semibold text-[#F51997] rounded`
+                        font-semibold text-[#f9804b] rounded`
 
     const toggleSideBar = () => {
         return setShowSidebar(prevState => !prevState)
@@ -58,10 +58,10 @@ const Sidebar = () => {
                             <div className='pr-4'>
                                 <button
                                     onClick={() => login()}
-                                    className='cursor-pointer bg-white text-lg text-[#F51997]
-                                        border-[1px] border-[#F51997] font-semibold
+                                    className='cursor-pointer bg-white text-lg text-[#f9804b]
+                                        border-[1px] border-[#f9804b] font-semibold
                                         px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white
-                                        hover:bg-[#F51997] transition '
+                                        hover:bg-[#f9804b] transition '
                                 >
                                     Login
                                 </button>
