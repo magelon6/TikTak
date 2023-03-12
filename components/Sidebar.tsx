@@ -3,8 +3,6 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import Link from 'next/link'
 
-import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
-
 import Discover from "./Discover";
 import SuggestedAccounts from "./SuggestedAccounts";
 import Footer from "./Footer";
@@ -24,10 +22,6 @@ const Sidebar = () => {
     const toggleSideBar = () => {
         return setShowSidebar(prevState => !prevState)
     }
-
-    const login = useGoogleLogin({
-        onSuccess: tokenResponse => console.log(tokenResponse),
-    });
 
     return (
         <div>
@@ -57,7 +51,6 @@ const Sidebar = () => {
                             <p className='text-gray-400'>Log in to like and comment videos</p>
                             <div className='pr-4'>
                                 <button
-                                    onClick={() => login()}
                                     className='cursor-pointer bg-white text-lg text-[#f9804b]
                                         border-[1px] border-[#f9804b] font-semibold
                                         px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white
