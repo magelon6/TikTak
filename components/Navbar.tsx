@@ -1,14 +1,11 @@
 import React from 'react';
 import Image from "next/image";
-import Link from "next/link"
-// import { useRouter } from "next/router";
-// import { GoogleLogin, googleLogout  } from '@react-oauth/google';
-// import { AiOutlineLogout } from "react-icons/ai";
-// import { BiSearch } from "react-icons/bi";
-// import { ioMdAdd } from "react-icons/io"
-import Logo from "../utils/tiktak.png"
+import Link from "next/link";
+import Logo from "../utils/tiktak.png";
 
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+
+import { createOrGetUser } from 'utils';
 
 const Navbar = () => {
 
@@ -37,7 +34,7 @@ const Navbar = () => {
                 ) : (
                     <GoogleLogin
                         onSuccess={credentialResponse => {
-                            console.log(credentialResponse);
+                            createOrGetUser(credentialResponse);
                         }}
                         onError={() => {
                             console.log('Login Failed');
