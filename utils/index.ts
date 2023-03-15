@@ -9,9 +9,10 @@ interface GoogleAuthRes {
     sub: string,
 }
 
-export const createOrGetUser = async (response: any) => {
-    const decode: GoogleAuthRes = jwt_decode(response.credential);
 
+export const createOrGetUser = async (response: any, addUser: any) => {
+    const decode: GoogleAuthRes = jwt_decode(response.credential);
+    
     const { name, picture, sub } = decode;
     
     const user = {
@@ -21,7 +22,7 @@ export const createOrGetUser = async (response: any) => {
         image: picture,
     };
     
-    console.log(BASE_URL);
+    addUser(user);
     
     await axios.post(`${BASE_URL}/api/auth`, user );
 

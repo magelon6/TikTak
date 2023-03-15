@@ -6,10 +6,11 @@ import Logo from "../utils/tiktak.png";
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 
 import { createOrGetUser } from 'utils';
+import useAuthStore from 'state/authStore';
 
 const Navbar = () => {
 
-    const user = false;
+    const { userProfile, addUser } = useAuthStore();
 
     return (
         <div className='w-full flex justify-between items-center
@@ -29,12 +30,12 @@ const Navbar = () => {
             <div>SEARCH</div>
 
             <div>
-                { user ? (
-                    <div>Logged in</div> 
+                { userProfile ? (
+                    <div>{userProfile?.userName}</div> 
                 ) : (
                     <GoogleLogin
                         onSuccess={credentialResponse => {
-                            createOrGetUser(credentialResponse);
+                            createOrGetUser(credentialResponse, addUser);
                         }}
                         onError={() => {
                             console.log('Login Failed');

@@ -20,7 +20,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "uuidv4": "^6.2.13",
-    "zustand": "^4.3.3"
+    "zustand": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "18.13.0",
