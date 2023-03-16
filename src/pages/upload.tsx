@@ -16,6 +16,8 @@ const Upload = () => {
 
   const uploadVideo = async(e: any) => {
     setIsLoading(true);
+    console.log(e.target.files[0]);
+    
     const selectedFile = e.target.files[0];
     const fileTypes = [ 'video/WebM', 'video/mp4', 'video/ogg' ];
 
@@ -46,11 +48,16 @@ const Upload = () => {
           <div className='border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[230px] h-[380px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100'>
             {isLoading ? (
               <p>Uploading...</p>
+              
             ) : (
               <div>
                 {videoAsset ? (
                   <div>
-
+                    <video
+                      loop
+                      src={videoAsset.url}
+                      controls
+                    />
                   </div>
                 ) : (
                   <label className='cursor-pointer'>
