@@ -12,6 +12,9 @@ import { PORT } from '@/globals'
 import axios from 'axios'
 import { Video } from 'types'
 
+import useAuthStore from '../../../state/authStore'
+import Comments from 'components/Comments'
+import LikeButton from 'components/LikeButton'
 interface IProps {
   postDetails: Video
 }
@@ -20,6 +23,8 @@ const Detail = ({ postDetails }: IProps) => {
   const [post, setPost] = useState(postDetails)
   const [isPlaying, setIsPlaying] = useState(true)
   const [isMuted, setIsMuted] = useState(false);
+
+  const { userProfile } = useAuthStore();
 
   const router = useRouter();
 
@@ -84,6 +89,44 @@ const Detail = ({ postDetails }: IProps) => {
               <HiVolumeUp onClick={() => setIsMuted(true)} className="text-white text-2xl lg:text-4xl"/>
             </button>
           )}
+        </div>
+      </div>
+      <div className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
+        <div className="lg:mt-20 mt-10">
+          <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded '>
+            <div className='ml-4 md:w-20 md:h-20 w-16 h-16'>
+              <Link href='/'>
+                <Image
+                  width={16}
+                  height={16}
+                  className="rounded-full"
+                  src={post.postedBy.image}
+                  alt="profile photo"
+                  layout="responsive"
+                />
+              </Link>
+            </div>
+            <div className="text-lg ">
+              <Link href='/'>
+              <div className='mt-3 flex flex-col  gap-2'>
+                  <p className='flex gap-2 items-center md:text-md font-bold text-primary'>
+                    {post.postedBy.userName}{' '}
+                    <GoVerified className='text-blue-400 text-md' />
+                  </p>
+                  <p className='capitalize font-medium text-xs text-gray-500 hidden md:block'>
+                    {post.postedBy.userName}
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+          <p className="px-10 py-3  text-lg text-gray-600">{post.caption}</p>
+          <div className="mt-10 px-10">
+            {userProfile && (
+              <LikeButton />
+            )}
+          </div>
+          <Comments />
         </div>
       </div>
     </div>
