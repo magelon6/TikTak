@@ -46,21 +46,6 @@ const Sidebar = () => {
                             </span>
                         </div>
                     </Link>
-                    {!userProfile && (
-                        <div className='px-2 py-4 hidden xl:block '>
-                            <p className='text-gray-400'>Log in to like and comment videos</p>
-                            <div className='pr-4'>
-                                <button
-                                    className='cursor-pointer bg-white text-lg text-[#f9804b]
-                                        border-[1px] border-[#f9804b] font-semibold
-                                        px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white
-                                        hover:bg-[#f9804b] transition '
-                                >
-                                    Login
-                                </button>
-                            </div>
-                        </div>
-                    )}
                     <Discover />
                     <SuggestedAccounts />
                     <Footer />
