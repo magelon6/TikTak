@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Video } from 'types'
 
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
@@ -29,8 +29,13 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
       videoRef?.current?.play()
       setPlaying(true)
     }
-    
   }
+
+  useEffect(() => {
+    if(videoRef.current) {
+      videoRef.current.muted = isMuted
+    }
+  }, [isMuted])
 
   return (
     <div className='flex flex-col border-b-2 border-gray-200 pb-6'>
@@ -91,11 +96,11 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
               )}
               {isMuted ? (
                 <button>
-                  <HiVolumeOff className="text-[#f9804b] text-2xl lg:text-4xl"/>
+                  <HiVolumeOff onClick={() => setIsMuted(false)} className="text-[#f9804b] text-2xl lg:text-4xl"/>
                 </button>
               ) : (
                 <button>
-                  <HiVolumeUp className="text-[#f9804b] text-2xl lg:text-4xl"/>
+                  <HiVolumeUp onClick={() => setIsMuted(true)} className="text-[#f9804b] text-2xl lg:text-4xl"/>
                 </button>
               )}
             </div>
