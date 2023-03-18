@@ -5,6 +5,8 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {className} from "postcss-selector-parser";
 
+import { orangeThemeColor } from '@/globals';
+
 const Discover = () => {
 
     const router = useRouter()

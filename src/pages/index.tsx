@@ -17,7 +17,7 @@ const Home = ({ videos }: IProps) => {
             <VideoCard post={video} key={video._id} />
            )) 
         ) : (
-            <NoResults text={'No Videos'}/>
+            <NoResults text={'Whoooop\'s there is no Videos'}/>
         )}
       </div>
   )
