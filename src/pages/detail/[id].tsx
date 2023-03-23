@@ -63,6 +63,7 @@ const Detail = ({ postDetails }: IProps) => {
 
       const response = await axios.put(`${BASE_URL}/api/post/${post._id}`, {userId: userProfile._id, comment} )
     }
+    setIsPostingComment(false)
   }
 
   useEffect(() => {
@@ -155,7 +156,13 @@ const Detail = ({ postDetails }: IProps) => {
               />
             )}
           </div>
-          <Comments />
+          <Comments 
+            comment={comment}
+            setComment={setComment}
+            addComment={addComment}
+            comments={post.comments}
+            isPostingComment={isPostingComment}
+          />
         </div>
       </div>
     </div>

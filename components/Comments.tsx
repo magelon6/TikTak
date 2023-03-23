@@ -7,12 +7,22 @@ import useAuthStore from 'state/authStore'
 import NoResults from './NoResults'
 
 interface IProps {
-  comments: string[],
+  isPostingComment: boolean,
+  comment: string,
+  setComment: () => void,
+  addComment: () => void,
+  comments: IComment[],
 }
 
-const Comments = ({ comments }: IProps) => {
+interface IComment {
+  comment: string,
+  length?: number,
+  _key: string,
+  postedBy: { _ref: string, _id: string },
+}
 
-  const isPostingComment = false;
+const Comments = ({ comments, setComment, addComment, comment, isPostingComment }: IProps) => {
+
   const {userProfile} = useAuthStore();
 
   return (
