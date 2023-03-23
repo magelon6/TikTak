@@ -15,6 +15,7 @@ import { Video } from 'types'
 import useAuthStore from '../../../state/authStore'
 import Comments from 'components/Comments'
 import LikeButton from 'components/LikeButton'
+import { BASE_URL } from 'utils'
 interface IProps {
   postDetails: Video
 }
@@ -24,6 +25,8 @@ const Detail = ({ postDetails }: IProps) => {
   const [post, setPost] = useState(postDetails)
   const [isPlaying, setIsPlaying] = useState(true)
   const [isMuted, setIsMuted] = useState(false);
+  const [isPostingComment, setIsPostingComment] = useState(false);
+  const [comment, setComment] = ('');
 
   const { userProfile }: any = useAuthStore();
 
@@ -49,6 +52,16 @@ const Detail = ({ postDetails }: IProps) => {
       })
 
       setPost({ ...post, likes: data.likes})
+    }
+  }
+
+  const addComment = async (e) => {
+    e.preventDefault();
+
+    if(userProfile){
+      setIsPostingComment(true);
+
+      const response = await axios.put(`${BASE_URL}/api/post/${post._id}`, {userId: userProfile._id, comment} )
     }
   }
 
