@@ -2,10 +2,7 @@ import React from 'react';
 
 import { topics } from '../utils/constants'
 import Link from "next/link";
-import {useRouter} from "next/router";
-import {className} from "postcss-selector-parser";
-
-import { orangeThemeColor } from '@/globals';
+import { useRouter } from "next/router";
 
 const Discover = () => {
 
