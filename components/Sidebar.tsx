@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import { NextPage } from "next";
-import { useRouter } from "next/router";
 import Link from 'next/link'
 
 import Discover from "./Discover";
@@ -13,7 +11,7 @@ import { ImCancelCircle } from "react-icons/im";
 const Sidebar = () => {
     const [showSidebar, setShowSidebar] = useState(true);
 
-    const userProfile = false;
+    // const userProfile = false;
 
     const normalLink = `flex items-center gap-3 hover:bg-primary p-3 
                         justify-center xl:justify-start cursor-pointer 
