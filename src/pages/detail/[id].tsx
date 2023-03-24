@@ -26,7 +26,7 @@ const Detail = ({ postDetails }: IProps) => {
   const [isPlaying, setIsPlaying] = useState(true)
   const [isMuted, setIsMuted] = useState(false);
   const [isPostingComment, setIsPostingComment] = useState(false);
-  const [comment, setComment] = ('');
+  const [comment, setComment] = useState('');
 
   const { userProfile }: any = useAuthStore();
 
@@ -61,12 +61,16 @@ const Detail = ({ postDetails }: IProps) => {
     if(userProfile){
       setIsPostingComment(true);
 
-      const response = await axios.put(`${BASE_URL}/api/post/${post._id}`, {userId: userProfile._id, comment} )
+      const { data } = await axios.put(`${BASE_URL}/api/post/${post._id}`, {userId: userProfile._id, comment} );
+      setPost({ ...post, comments: data. comments });
+      setComment('');
+      setIsPostingComment(false);
     }
-    setIsPostingComment(false)
   }
 
   useEffect(() => {
+    console.log(post);
+    
     if(post && videoRef.current) {
       videoRef.current.muted = isMuted
     }
