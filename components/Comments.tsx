@@ -7,18 +7,18 @@ import useAuthStore from 'state/authStore'
 import NoResults from './NoResults'
 
 interface IProps {
-  isPostingComment: boolean,
-  comment: string,
-  setComment: Dispatch<SetStateAction<string>>,
-  addComment: (e: React.FormEvent) => void,
-  comments: IComment[],
+  isPostingComment: boolean;
+  comment: string;
+  setComment: Dispatch<SetStateAction<string>>;
+  addComment: (e: React.FormEvent) => void;
+  comments: IComment[];
 }
 
 interface IComment {
-  comment: string,
-  length?: number,
-  _key: string,
-  postedBy: { _ref: string, _id: string },
+  comment: string;
+  length?: number;
+  _key: string;
+  postedBy: { _ref: string, _id: string };
 }
 
 const Comments = ({ comments, setComment, addComment, comment, isPostingComment }: IProps) => {
