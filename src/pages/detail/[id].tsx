@@ -8,14 +8,12 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { BsFillPlayFill } from 'react-icons/bs'
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 
-import { PORT } from '@/globals'
 import axios from 'axios'
 import { Video } from 'types'
 
 import useAuthStore from '../../../state/authStore'
 import Comments from 'components/Comments'
 import LikeButton from 'components/LikeButton'
-import { BASE_URL } from 'utils'
 interface IProps {
   postDetails: Video
 }
@@ -45,7 +43,7 @@ const Detail = ({ postDetails }: IProps) => {
 
   const handleLike = async(like: boolean) => {
     if(userProfile) {
-      const { data } = await axios.put(`${PORT}api/like`, {
+      const { data } = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/like`, {
         userId: userProfile._id,
         postId: post._id,
         like,
@@ -61,7 +59,7 @@ const Detail = ({ postDetails }: IProps) => {
     if(userProfile){
       setIsPostingComment(true);
 
-      const { data } = await axios.put(`${BASE_URL}/api/post/${post._id}`, {userId: userProfile._id, comment} );
+      const { data } = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${post._id}`, {userId: userProfile._id, comment} );
       setPost({ ...post, comments: data. comments });
       setComment('');
       setIsPostingComment(false);
@@ -175,7 +173,7 @@ const Detail = ({ postDetails }: IProps) => {
 
 export async function getServerSideProps({ params: { id }}: {params: { id: string }}) {
 
-  const { data } = await axios.get(`${PORT}api/post/${id}`);
+  const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${id}`);
 
   return {
     props: { postDetails: data}

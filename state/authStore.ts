@@ -1,4 +1,3 @@
-import { PORT } from '@/globals';
 import axios from 'axios';
 import { client } from 'utils/client';
 import { create } from 'zustand';
@@ -12,7 +11,7 @@ const authStore = (set: any) => ({
   removeUser: () => set({userProfile: null}),
 
   fetchAllUsers: async () => {
-    const response = await axios.get(`${PORT}/api/users`);
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`);
     set({ allUsers: response.data })
   }
   
