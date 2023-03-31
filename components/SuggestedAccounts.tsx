@@ -23,22 +23,25 @@ const SuggestedAccounts = () => {
                 {allUsers.slice(0, 6).map((user: IUser) => (
                     <Link href={`/profile/${user._id}`} key={user._id}>
                         <div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold roundned">
-                            <Image 
-                                src={user.image}
-                                width={34}
-                                height={34}
-                                className="rounded-full"
-                                alt="user profile image"
-                            />
-                        </div>
-                        <div className="hidden xl:block">
-                            <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
-                                {user.userName}
-                                <GoVerified className="text-blue-400" />
-                            </p>
-                            <p className="capitalize text-gray-400 text-xs">
-                                {user.userName}
-                            </p>
+                            <div className="w-8 h-8">
+                                <Image 
+                                    src={user.image}
+                                    width={34}
+                                    height={34}
+                                    className="rounded-full"
+                                    alt="user profile image"
+                                />
+                            </div>
+                        
+                            <div className="hidden xl:block">
+                                <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
+                                    {user.userName}
+                                    <GoVerified className="text-blue-400" />
+                                </p>
+                                <p className="capitalize text-gray-400 text-xs">
+                                    {user.userName}
+                                </p>
+                            </div>
                         </div>
                     </Link>
                 ))}
