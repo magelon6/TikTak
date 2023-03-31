@@ -1,6 +1,4 @@
-import type { NextPage } from "next";
 import axios from "axios";
-import { PORT } from "@/globals";
 import type { Video } from '../../types';
 import NoResults from "components/NoResults";
 import VideoCard from "components/VideoCard";
@@ -25,7 +23,7 @@ const Home = ({ videos }: IProps) => {
 
 export async function getServerSideProps() {
 
-    const { data } = await axios.get(`${PORT}/api/post`)
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post`)
 
     return {
         props: {

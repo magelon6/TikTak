@@ -9,7 +9,6 @@ import useAuthStore from 'state/authStore';
 import { client } from 'utils/client';
 
 import { topics } from "utils/constants";
-import { PORT } from '@/globals';
 
 const Upload = () => {
 
@@ -67,7 +66,7 @@ const Upload = () => {
         },
         topic: category,
       }
-      await axios.post(PORT + 'api/post', document)
+      await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post`, document)
 
       router.push('/')
     }
