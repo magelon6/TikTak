@@ -17,6 +17,7 @@ import useAuthStore from 'state/authStore';
 const Navbar = () => {
 
     const { userProfile, addUser, removeUser } = useAuthStore();
+    
     const [searchValue, setSearchValue] = useState('')
     const router = useRouter();
 
