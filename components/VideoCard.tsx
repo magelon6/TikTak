@@ -110,8 +110,6 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                 </button>
               )}
               <div
-              className='border-solid border-2 absolute pr-10 right-20'
-                onMouseLeave={handleVolumeIconMouseOut}
                 onMouseEnter={handleVolumeIconMouseOver}
               >
                 {isMuted ? (
@@ -125,12 +123,13 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                 )}
                 {showVolumeSlider && (
                   <input 
-                    className='absolute accent-[#f9804b] right-10 pr-10 mr-2 cursor-pointer rotate-[-90deg] transition ease-in-out'
+                    className='absolute accent-[#f9804b] right-10 mr-2 cursor-pointer rotate-[-90deg] transition ease-in-out'
                     type='range'
                     min='0'
                     max='1'
                     step='0.01'
                     value={volume}
+                    onMouseLeave={handleVolumeIconMouseOut}
                     onChange={handleVolumeSliderChange}
                   />
                 )}
