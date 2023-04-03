@@ -89,7 +89,7 @@ const Detail = ({ postDetails }: IProps) => {
             <video
               loop
               onClick={onVideoClick}
-              // autoPlay
+              autoPlay
               ref={videoRef}
               src={post.video.asset.url}
               className="h-full cursor-pointer"

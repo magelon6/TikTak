@@ -17,6 +17,8 @@ import useAuthStore from 'state/authStore';
 const Navbar = () => {
 
     const { userProfile, addUser, removeUser } = useAuthStore();
+    console.log(userProfile);
+    
     
     const [searchValue, setSearchValue] = useState('')
     const router = useRouter();
@@ -73,7 +75,7 @@ const Navbar = () => {
                             </button>
                         </Link>
                         {userProfile.image && (
-                            <Link href='/profile'>
+                            <Link href={`/profile/${userProfile._id}`}>
                                 <Image
                                     width={40}
                                     height={40}
