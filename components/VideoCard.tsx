@@ -17,8 +17,24 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
   const [isHover, setIsHover] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(1);
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false)
 
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  const handleVolumeSliderChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    videoRef.current.volume = newVolume;
+  }
+
+  const handleVolumeIconMouseOver = () => {
+    setShowVolumeSlider(true);
+  }
+
+  const handleVolumeIconMouseOut = () => {
+    setShowVolumeSlider(false);
+  }
 
   const handleVideo = () => {
     if(playing){
@@ -93,15 +109,31 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                   <BsFillPlayFill className="text-[#f9804b] text-2xl lg:text-4xl"/>
                 </button>
               )}
-              {isMuted ? (
-                <button>
-                  <HiVolumeOff onClick={() => setIsMuted(false)} className="text-[#f9804b] text-2xl lg:text-4xl"/>
-                </button>
-              ) : (
-                <button>
-                  <HiVolumeUp onClick={() => setIsMuted(true)} className="text-[#f9804b] text-2xl lg:text-4xl"/>
-                </button>
-              )}
+              <div
+                onMouseEnter={handleVolumeIconMouseOver}
+              >
+                {isMuted ? (
+                  <button>
+                    <HiVolumeOff onClick={() => setIsMuted(false)} className="text-[#f9804b] text-2xl lg:text-4xl"/>
+                  </button>
+                ) : (
+                  <button>
+                    <HiVolumeUp onClick={() => setIsMuted(true)} className="text-[#f9804b] text-2xl lg:text-4xl"/>
+                  </button>
+                )}
+                {showVolumeSlider && (
+                  <input 
+                    className='absolute accent-[#f9804b] right-10 mr-2 cursor-pointer rotate-[-90deg] transition ease-in-out'
+                    type='range'
+                    min='0'
+                    max='1'
+                    step='0.01'
+                    value={volume}
+                    onMouseLeave={handleVolumeIconMouseOut}
+                    onChange={handleVolumeSliderChange}
+                  />
+                )}
+              </div>
             </div>
           )}
         </div>
@@ -109,5 +141,6 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
     </div>
   )
 }
+
 
 export default VideoCard
