@@ -142,5 +142,4 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
   )
 }
 
-
 export default VideoCard
