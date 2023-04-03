@@ -2,17 +2,21 @@ import axios from "axios";
 import type { Video } from '../../types';
 import NoResults from "components/NoResults";
 import VideoCard from "components/VideoCard";
+import React, { useState } from 'react'
+
 
 interface IProps {
     videos: Video[];
 }
 
 const Home = ({ videos }: IProps) => {
+    const [globalVolume, setGlobalVolume] = useState(1);
+    
   return (
       <div className="flex flex-col gap-10 videos h-full">
         { videos.length ? (
            videos.map((video: Video) => (
-            <VideoCard post={video} key={video._id} />
+            <VideoCard post={video} key={video._id} volume={globalVolume} setVolume={setGlobalVolume} />
            )) 
         ) : (
             <NoResults text={'Whoooop\'s there is no Videos'}/>

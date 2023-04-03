@@ -9,15 +9,17 @@ import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
 
 interface IProps {
-  post: Video
+  post: Video;
+  volume: number;
+  setVolume: (volume: number) => void;
 }
 
-const VideoCard: NextPage<IProps> = ({ post }) => {
+const VideoCard: NextPage<IProps> = ({ post, volume, setVolume }) => {
 
   const [isHover, setIsHover] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(1);
+  
   const [showVolumeSlider, setShowVolumeSlider] = useState(false)
 
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -41,6 +43,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
       videoRef?.current?.pause()
       setPlaying(false)
     } else {
+      videoRef.current.volume = volume
       videoRef?.current?.play()
       setPlaying(true)
     }
@@ -90,7 +93,6 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           className="rounded-3xl">
           <Link href={`/detail/${post._id}`}>
             <video
-              // onClick={handleVideo}
               className='lg:w-[400px] h-[150px] md:h-[400px] lg:h-[400px] w-[200px] rounded-2xl cursor-pointer bg-gray-100' 
               src={post.video.asset.url}
               loop
